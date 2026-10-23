@@ -1,26 +1,112 @@
+# Laboratorio 01: Diseño de direccionamiento IPv4 mediante VLSM
 
-# Laboratorio 01: Fundamentos de direccionamiento IP
+## 1. Objetivo
 
-## Objetivo
+Diseñar un esquema de direccionamiento IPv4 para una pequeña empresa, dividiendo una red `/24` en subredes de distintos tamaños mediante VLSM (*Variable Length Subnet Mask*).
 
-Estudiar y documentar los fundamentos del direccionamiento IPv4 y el subnetting mediante ejercicios prácticos.
+El objetivo es asignar direcciones IP de manera ordenada, evitar solapamientos entre subredes y definir los gateways de cada segmento.
 
-## Contenidos
+## 2. Escenario
 
-- Direcciones IPv4.
-- Máscaras de subred y prefijos CIDR.
-- Identificación de red y broadcast.
-- Rangos de direcciones utilizables.
-- Planificación de direccionamiento IP.
+Se dispone de la red `192.168.10.0/24` y se requiere segmentarla para tres áreas:
 
-## Desarrollo
+| Área | Capacidad requerida |
+|---|---:|
+| Administración | 50 dispositivos |
+| Operaciones | 25 dispositivos |
+| Servidores | 10 dispositivos |
 
-En esta sección se incorporarán ejercicios resueltos, tablas de direccionamiento y ejemplos de diseño de subredes.
+Se utilizará VLSM para asignar a cada área una máscara adecuada a su necesidad.
 
-## Validación
+## 3. Fundamentos técnicos
 
-Se documentarán los cálculos realizados y se comprobarán los resultados con herramientas de diagnóstico cuando corresponda.
+IPv4 utiliza direcciones de 32 bits. El prefijo CIDR indica cuántos bits identifican la red; los bits restantes se utilizan para las direcciones de host.
 
-## Estado
+Para calcular la cantidad convencional de direcciones utilizables se aplica:
 
-En preparación.
+`Hosts utilizables = 2^h - 2`
+
+Donde `h` representa la cantidad de bits disponibles para hosts. Se descuentan las direcciones de red y broadcast.
+
+Las subredes se asignan desde la de mayor requerimiento hasta la de menor requerimiento, respetando los límites de cada bloque.
+
+## 4. Diseño de subredes
+
+| Área | Red / Prefijo | Máscara | Rango de hosts utilizables | Broadcast | Hosts utilizables |
+|---|---|---|---|---|---:|
+| Administración | `192.168.10.0/26` | `255.255.255.192` | `192.168.10.1 - 192.168.10.62` | `192.168.10.63` | 62 |
+| Operaciones | `192.168.10.64/27` | `255.255.255.224` | `192.168.10.65 - 192.168.10.94` | `192.168.10.95` | 30 |
+| Servidores | `192.168.10.96/28` | `255.255.255.240` | `192.168.10.97 - 192.168.10.110` | `192.168.10.111` | 14 |
+
+## 5. Asignación de gateways
+
+Se establece como criterio utilizar la primera dirección IP utilizable de cada subred como gateway.
+
+| Área | Gateway propuesto |
+|---|---|
+| Administración | `192.168.10.1` |
+| Operaciones | `192.168.10.65` |
+| Servidores | `192.168.10.97` |
+
+Estas direcciones deberán configurarse en las interfaces correspondientes del router o dispositivo de capa 3 cuando se implemente la topología.
+
+## 6. Cálculos realizados
+
+### Administración
+
+- Dispositivos requeridos: 50.
+- Bits de host: 6.
+- Prefijo: `/26`.
+- Direcciones totales: `2^6 = 64`.
+- Hosts utilizables: `64 - 2 = 62`.
+- Máscara: `255.255.255.192`.
+
+La subred `/27` solo permitiría 30 hosts utilizables, por lo que no satisface el requerimiento.
+
+### Operaciones
+
+- Dispositivos requeridos: 25.
+- Bits de host: 5.
+- Prefijo: `/27`.
+- Direcciones totales: `2^5 = 32`.
+- Hosts utilizables: `32 - 2 = 30`.
+- Máscara: `255.255.255.224`.
+
+### Servidores
+
+- Dispositivos requeridos: 10.
+- Bits de host: 4.
+- Prefijo: `/28`.
+- Direcciones totales: `2^4 = 16`.
+- Hosts utilizables: `16 - 2 = 14`.
+- Máscara: `255.255.255.240`.
+
+## 7. Validaciones del diseño
+
+- Las tres subredes pertenecen al bloque original `192.168.10.0/24`.
+- Los bloques están alineados con los límites correspondientes a sus prefijos.
+- No existe solapamiento entre las subredes asignadas.
+- Los gateways propuestos pertenecen a los rangos de hosts utilizables.
+- La capacidad de cada subred cubre la cantidad de dispositivos requerida.
+
+El espacio desde `192.168.10.112` hasta `192.168.10.255` permanece sin asignar y puede reservarse para futuras ampliaciones, siempre que se planifique adecuadamente.
+
+Estas son validaciones del diseño lógico; todavía no se han realizado pruebas de conectividad en una topología implementada.
+
+## 8. Conclusiones
+
+El uso de VLSM permite asignar subredes de diferentes tamaños según las necesidades de cada área, aprovechando el espacio de direccionamiento disponible.
+
+La planificación previa de las redes, las máscaras y los gateways facilita la administración, el crecimiento y la resolución de problemas en una infraestructura de red.
+
+## 9. Estado del laboratorio
+
+**Diseño y cálculos:** completados.
+
+**Implementación en simulador:** pendiente.
+
+**Pruebas de conectividad:** pendientes.
+
+## 10. Herramientas
+
+Los cálculos y el diseño se desarrollaron como ejercicio de planificación de direccionamiento IPv4. La implementación y las evidencias de simulación se incorporarán en una siguiente etapa.
