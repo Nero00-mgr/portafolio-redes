@@ -8,7 +8,7 @@ El objetivo es asignar direcciones IP de manera ordenada, evitar solapamientos e
 
 ## 2. Escenario
 
-Se dispone de la red `192.168.10.0/24` y se requiere segmentarla para tres áreas:
+Se dispone de la red `192.168.1.0/24` y se requiere segmentarla para tres áreas:
 
 | Área | Capacidad requerida |
 |---|---:|
@@ -34,9 +34,9 @@ Las subredes se asignan desde la de mayor requerimiento hasta la de menor requer
 
 | Área | Red / Prefijo | Máscara | Rango de hosts utilizables | Broadcast | Hosts utilizables |
 |---|---|---|---|---|---:|
-| Administración | `192.168.10.0/26` | `255.255.255.192` | `192.168.10.1 - 192.168.10.62` | `192.168.10.63` | 62 |
-| Operaciones | `192.168.10.64/27` | `255.255.255.224` | `192.168.10.65 - 192.168.10.94` | `192.168.10.95` | 30 |
-| Servidores | `192.168.10.96/28` | `255.255.255.240` | `192.168.10.97 - 192.168.10.110` | `192.168.10.111` | 14 |
+| Administración | `192.168.1.0/26` | `255.255.255.192` | `192.168.1.1 - 192.168.1.62` | `192.168.1.63` | 62 |
+| Operaciones | `192.168.1.64/27` | `255.255.255.224` | `192.168.1.65 - 192.168.1.94` | `192.168.1.95` | 30 |
+| Servidores | `192.168.1.96/28` | `255.255.255.240` | `192.168.1.97 - 192.168.1.110` | `192.168.1.111` | 14 |
 
 ## 5. Asignación de gateways
 
@@ -44,9 +44,9 @@ Se establece como criterio utilizar la primera dirección IP utilizable de cada 
 
 | Área | Gateway propuesto |
 |---|---|
-| Administración | `192.168.10.1` |
-| Operaciones | `192.168.10.65` |
-| Servidores | `192.168.10.97` |
+| Administración | `192.168.1.1` |
+| Operaciones | `192.168.1.65` |
+| Servidores | `192.168.1.97` |
 
 Estas direcciones deberán configurarse en las interfaces correspondientes del router o dispositivo de capa 3 cuando se implemente la topología.
 
@@ -83,13 +83,13 @@ La subred `/27` solo permitiría 30 hosts utilizables, por lo que no satisface e
 
 ## 7. Validaciones del diseño
 
-- Las tres subredes pertenecen al bloque original `192.168.10.0/24`.
+- Las tres subredes pertenecen al bloque original `192.168.1.0/24`.
 - Los bloques están alineados con los límites correspondientes a sus prefijos.
 - No existe solapamiento entre las subredes asignadas.
 - Los gateways propuestos pertenecen a los rangos de hosts utilizables.
 - La capacidad de cada subred cubre la cantidad de dispositivos requerida.
 
-El espacio desde `192.168.10.112` hasta `192.168.10.255` permanece sin asignar y puede reservarse para futuras ampliaciones, siempre que se planifique adecuadamente.
+El espacio desde `192.168.1.112` hasta `192.168.1.255` permanece sin asignar y puede reservarse para futuras ampliaciones, siempre que se planifique adecuadamente.
 
 Estas son validaciones del diseño lógico; todavía no se han realizado pruebas de conectividad en una topología implementada.
 
