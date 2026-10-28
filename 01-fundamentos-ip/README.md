@@ -103,9 +103,9 @@ La planificación previa de las redes, las máscaras y los gateways facilita la 
 
 **Diseño y cálculos:** completados.
 
-**Implementación en simulador:** pendiente.
+**Implementación en simulador:** completados.
 
-**Pruebas de conectividad:** pendientes.
+**Pruebas de conectividad:** completados.
 
 ## 10. Herramientas
 
