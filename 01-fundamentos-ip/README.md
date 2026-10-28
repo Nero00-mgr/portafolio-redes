@@ -124,4 +124,3 @@ La planificación previa de las redes, las máscaras y los gateways facilita la 
 - **`ipconfig`:** comprobación de la configuración IP de los equipos finales.
 - **`ping`:** pruebas de conectividad entre equipos.
 
-Los cálculos y el diseño se desarrollaron como ejercicio de planificación de direccionamiento IPv4. La implementación y las evidencias de simulación se incorporarán en una siguiente etapa.
