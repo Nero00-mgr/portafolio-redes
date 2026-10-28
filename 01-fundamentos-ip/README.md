@@ -91,7 +91,15 @@ La subred `/27` solo permitiría 30 hosts utilizables, por lo que no satisface e
 
 El espacio desde `192.168.1.112` hasta `192.168.1.255` permanece sin asignar y puede reservarse para futuras ampliaciones, siempre que se planifique adecuadamente.
 
-Estas son validaciones del diseño lógico; todavía no se han realizado pruebas de conectividad en una topología implementada.
+### 7.1 Validación mediante simulación
+
+El diseño fue implementado en Cisco Packet Tracer utilizando un router, tres switches y equipos finales distribuidos en las áreas de Administración, Operaciones y Servidores.
+
+Se configuraron las direcciones IPv4 y máscaras correspondientes en los equipos finales y en las interfaces físicas del router. Se realizaron pruebas de conectividad mediante `ping` para verificar la comunicación entre los equipos seleccionados.
+
+Las capturas de la topología, configuración IP y resultados de conectividad se encuentran en la carpeta [`evidencias`](evidencias/).
+
+La implementación permitió aplicar los cálculos VLSM en una topología simulada y comprobar el funcionamiento de la conectividad básica configurada.
 
 ## 8. Conclusiones
 
@@ -101,12 +109,19 @@ La planificación previa de las redes, las máscaras y los gateways facilita la 
 
 ## 9. Estado del laboratorio
 
-**Diseño y cálculos:** completados.
+- **Diseño y cálculos VLSM:** completados.
+- **Implementación en Cisco Packet Tracer:** completada.
+- **Asignación de direcciones IPv4 y máscaras:** completada.
+- **Configuración de interfaces físicas del router:** completada.
+- **Pruebas de conectividad básica:** realizadas y documentadas mediante capturas.
 
-**Implementación en simulador:** completados.
+## 10. Herramientas y tecnologías
 
-**Pruebas de conectividad:** completados.
-
-## 10. Herramientas
+- **Cisco Packet Tracer:** diseño e implementación de la topología de red.
+- **IPv4 y CIDR:** planificación del direccionamiento.
+- **VLSM:** división de la red en subredes de distintos tamaños.
+- **Cisco IOS:** configuración de direcciones IP en interfaces físicas del router.
+- **`ipconfig`:** comprobación de la configuración IP de los equipos finales.
+- **`ping`:** pruebas de conectividad entre equipos.
 
 Los cálculos y el diseño se desarrollaron como ejercicio de planificación de direccionamiento IPv4. La implementación y las evidencias de simulación se incorporarán en una siguiente etapa.
