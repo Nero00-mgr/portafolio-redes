@@ -91,9 +91,19 @@ El espacio desde `192.168.1.112` hasta `192.168.1.255` permanece sin asignar y p
 
 ### 7.1 Implementación en Cisco Packet Tracer
 
-![Topología del Laboratorio 01](evidencias/Topologia-Lab-01.png)
-
 El diseño fue implementado utilizando un router, tres switches y nueve PCs distribuidos en las áreas de Administración, Operaciones y Servidores.
+
+#### Topología de red
+
+[![Topología del Laboratorio 01](evidencias/Topologia-Lab-01.png)](evidencias/Topologia-Lab-01.png)
+
+<p align="center">
+  <a href="evidencias/Topologia-Lab-01.png">🖼️ Ver topología completa</a>
+  &nbsp; | &nbsp;
+  <a href="evidencias/LAB-01.pkt?raw=1">📥 Descargar laboratorio (.pkt)</a>
+</p>
+
+#### Configuración realizada
 
 Se realizaron las siguientes configuraciones:
 
@@ -118,19 +128,19 @@ La prueba entre Administración y Operaciones permitió comprobar el funcionamie
 
 ### 7.3 Evidencias del laboratorio
 
-Las capturas de pantalla y el proyecto de Cisco Packet Tracer permiten consultar la implementación y verificar los resultados obtenidos.
+Las siguientes capturas permiten verificar la configuración IPv4 de los equipos y los resultados de las pruebas de conectividad.
 
-**Evidencias disponibles:**
+**Configuración IPv4:**
 
-- [Carpeta de evidencias](evidencias/)
-- [Configuración IPv4 de PC1](evidencias/Ipconfig-comprobación-de-conf-PC1.png)
-- [Configuración IPv4 de PC2](evidencias/Ipconfig-comprobación-de-conf-PC2.png)
-- [Prueba de conectividad entre Administración y Operaciones](evidencias/Prueba-de-conectividad-ping-PC1.png)
-- [Prueba de conectividad entre Operaciones y Administración](evidencias/Prueba-de-conectividad-ping-PC2.png)
+- [Configuración IPv4 de PC1 - Administración](evidencias/Ipconfig-comprobación-de-conf-PC1.png)
+- [Configuración IPv4 de PC2 - Operaciones](evidencias/Ipconfig-comprobación-de-conf-PC2.png)
 
-**Archivo del laboratorio:**
+**Pruebas de conectividad:**
 
-- [Descargar laboratorio de Packet Tracer](evidencias/LAB-01.pkt)
+- [Ping desde PC1 hacia PC2 - Administración a Operaciones](evidencias/Prueba-de-conectividad-ping-PC1.png)
+- [Ping desde PC2 hacia PC1 - Operaciones a Administración](evidencias/Prueba-de-conectividad-ping-PC2.png)
+
+[Consultar carpeta completa de evidencias](evidencias/)
 
 ## 8. Conclusiones
 
