@@ -10,11 +10,11 @@ Una empresa está ampliando su infraestructura de red. Actualmente dispone de un
 
 La empresa necesita separar lógicamente los dispositivos de distintos departamentos para mejorar la organización de la red y facilitar la aplicación de políticas de seguridad en el futuro.
 
-| Departamento | Dispositivos |	VLAN ID |
+| Área | Capacidad requerida |
 |---|---:|
-| Administración |	5 PCs	| 10 |
-| Operaciones	| 6 PCs	| 20 |
-| TI / Servidores	| 2 PCs + 1 servidor| 30 | 
+| Administración | 50 dispositivos |
+| Operaciones | 25 dispositivos |
+| Servidores | 10 dispositivos |
 
 Tendrás disponibles:
 - 1 router Cisco.
