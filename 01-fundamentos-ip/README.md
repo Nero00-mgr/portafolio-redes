@@ -2,9 +2,9 @@
 
 ## 1. Objetivo
 
-Diseñar un esquema de direccionamiento IPv4 para una pequeña empresa, dividiendo una red `/24` en subredes de distintos tamaños mediante VLSM (*Variable Length Subnet Mask*).
+Diseñar e implementar un esquema de direccionamiento IPv4 para una pequeña empresa, utilizando VLSM (*Variable Length Subnet Mask*) para dividir una red `/24` en subredes de distintos tamaños.
 
-El objetivo es asignar direcciones IP de manera ordenada, evitar solapamientos entre subredes y definir los gateways de cada segmento.
+El laboratorio busca asignar direcciones IP de manera eficiente, evitar solapamientos, configurar los gateways correspondientes y verificar la conectividad mediante una simulación en Cisco Packet Tracer.
 
 ## 2. Escenario
 
@@ -16,19 +16,21 @@ Se dispone de la red `192.168.1.0/24` y se requiere segmentarla para tres áreas
 | Operaciones | 25 dispositivos |
 | Servidores | 10 dispositivos |
 
-Se utilizará VLSM para asignar a cada área una máscara adecuada a su necesidad.
+Se utilizará VLSM para asignar a cada área una máscara adecuada a sus necesidades, considerando también la posibilidad de futuras ampliaciones.
+
+La topología implementada consta de un router, tres switches y nueve PCs, distribuidos entre las tres áreas.
 
 ## 3. Fundamentos técnicos
 
-IPv4 utiliza direcciones de 32 bits. El prefijo CIDR indica cuántos bits identifican la red; los bits restantes se utilizan para las direcciones de host.
+IPv4 utiliza direcciones de 32 bits. El prefijo CIDR indica cuántos bits identifican la red; los bits restantes corresponden a la porción de host.
 
-Para calcular la cantidad convencional de direcciones utilizables se aplica:
+Para calcular la cantidad de direcciones utilizables en una subred IPv4 convencional se aplica:
 
 `Hosts utilizables = 2^h - 2`
 
 Donde `h` representa la cantidad de bits disponibles para hosts. Se descuentan las direcciones de red y broadcast.
 
-Las subredes se asignan desde la de mayor requerimiento hasta la de menor requerimiento, respetando los límites de cada bloque.
+Para realizar el diseño VLSM, las subredes se asignan desde la de mayor requerimiento hasta la de menor, respetando los límites de cada bloque.
 
 ## 4. Diseño de subredes
 
@@ -40,15 +42,13 @@ Las subredes se asignan desde la de mayor requerimiento hasta la de menor requer
 
 ## 5. Asignación de gateways
 
-Se establece como criterio utilizar la primera dirección IP utilizable de cada subred como gateway.
+Se utilizó la primera dirección IP utilizable de cada subred como gateway predeterminado. Estas direcciones fueron configuradas en las interfaces físicas correspondientes del router durante la implementación en Cisco Packet Tracer.
 
-| Área | Gateway propuesto |
+| Área | Gateway configurado |
 |---|---|
 | Administración | `192.168.1.1` |
 | Operaciones | `192.168.1.65` |
 | Servidores | `192.168.1.97` |
-
-Estas direcciones deberán configurarse en las interfaces correspondientes del router o dispositivo de capa 3 cuando se implemente la topología.
 
 ## 6. Cálculos realizados
 
@@ -84,26 +84,61 @@ Estas direcciones deberán configurarse en las interfaces correspondientes del r
 - Las tres subredes pertenecen al bloque original `192.168.1.0/24`.
 - Los bloques están alineados con los límites correspondientes a sus prefijos.
 - No existe solapamiento entre las subredes asignadas.
-- Los gateways propuestos pertenecen a los rangos de hosts utilizables.
+- Los gateways configurados pertenecen a los rangos de hosts utilizables.
 - La capacidad de cada subred cubre la cantidad de dispositivos requerida.
 
-El espacio desde `192.168.1.112` hasta `192.168.1.255` permanece sin asignar y puede reservarse para futuras ampliaciones.
+El espacio desde `192.168.1.112` hasta `192.168.1.255` permanece sin asignar y puede reservarse para futuras ampliaciones, respetando los límites de las nuevas subredes.
 
-### 7.1 Validación mediante simulación
+### 7.1 Implementación en Cisco Packet Tracer
 
-El diseño fue implementado en Cisco Packet Tracer utilizando un router, tres switches y equipos finales distribuidos en las áreas de Administración, Operaciones y Servidores.
+![Topología del Laboratorio 01](evidencias/Topologia-Lab-01.png)
 
-Se configuraron las direcciones IPv4 y máscaras correspondientes en los equipos finales y en las interfaces físicas del router. Se realizaron pruebas de conectividad mediante `ping` para verificar la comunicación entre los equipos seleccionados.
+El diseño fue implementado utilizando un router, tres switches y nueve PCs distribuidos en las áreas de Administración, Operaciones y Servidores.
 
-Las capturas de la topología, configuración IP y resultados de conectividad se encuentran en la carpeta [`evidencias`](evidencias/).
+Se realizaron las siguientes configuraciones:
 
-La implementación permitió aplicar los cálculos VLSM en una topología simulada y comprobar el funcionamiento de la conectividad básica configurada.
+- Asignación manual de direcciones IPv4, máscaras y gateways en los equipos finales.
+- Configuración de direcciones IPv4 en las interfaces físicas del router.
+- Habilitación de las interfaces mediante el comando `no shutdown`.
+- Conexión de los equipos mediante switches y enlaces Ethernet.
+
+En este laboratorio no se implementaron VLAN, DHCP ni mecanismos de seguridad de puertos, ya que estos contenidos se abordarán en laboratorios posteriores.
+
+### 7.2 Pruebas de conectividad
+
+Se realizaron pruebas para verificar el direccionamiento configurado y la comunicación entre los equipos.
+
+| Prueba realizada | Herramienta | Resultado |
+|---|---|---|
+| Verificación de la configuración IPv4 de PC1 | `ipconfig` | Configuración comprobada |
+| Verificación de la configuración IPv4 de PC2 | `ipconfig` | Configuración comprobada |
+| Conectividad entre PC1 (Administración) y PC2 (Operaciones) | `ping` | Comunicación exitosa |
+
+La prueba entre Administración y Operaciones permitió comprobar el funcionamiento del enrutamiento entre ambas subredes a través del router.
+
+### 7.3 Evidencias del laboratorio
+
+Las capturas de pantalla y el proyecto de Cisco Packet Tracer permiten consultar la implementación y verificar los resultados obtenidos.
+
+**Evidencias disponibles:**
+
+- [Carpeta de evidencias](evidencias/)
+- [Configuración IPv4 de PC1](evidencias/Ipconfig-comprobación-de-conf-PC1.png)
+- [Configuración IPv4 de PC2](evidencias/Ipconfig-comprobación-de-conf-PC2.png)
+- [Prueba de conectividad entre Administración y Operaciones](evidencias/Prueba-de-conectividad-ping-PC1.png)
+- [Prueba de conectividad entre Operaciones y Administración](evidencias/Prueba-de-conectividad-ping-PC2.png)
+
+**Archivo del laboratorio:**
+
+- [Descargar laboratorio de Packet Tracer](LAB%20-%2001.pkt?raw=1)
 
 ## 8. Conclusiones
 
-El uso de VLSM permite asignar subredes de diferentes tamaños según las necesidades de cada área, aprovechando el espacio de direccionamiento disponible.
+El uso de VLSM permitió distribuir el direccionamiento IPv4 de acuerdo con los requerimientos de cada área, evitando el desperdicio innecesario de direcciones y reservando espacio para futuras ampliaciones.
 
-La planificación previa de las redes, las máscaras y los gateways facilita la administración, el crecimiento y la resolución de problemas en una infraestructura de red.
+Mediante la implementación en Cisco Packet Tracer fue posible aplicar los cálculos realizados, configurar las interfaces del router y comprobar la comunicación entre equipos pertenecientes a diferentes subredes.
+
+Este laboratorio permitió reforzar los fundamentos de direccionamiento IPv4, máscaras de subred, gateways y conectividad básica.
 
 ## 9. Estado del laboratorio
 
@@ -111,14 +146,14 @@ La planificación previa de las redes, las máscaras y los gateways facilita la 
 - **Implementación en Cisco Packet Tracer:** completada.
 - **Asignación de direcciones IPv4 y máscaras:** completada.
 - **Configuración de interfaces físicas del router:** completada.
-- **Pruebas de conectividad básica:** realizadas y documentadas mediante capturas.
+- **Pruebas de conectividad entre subredes:** realizadas.
+- **Evidencias de configuración y conectividad:** documentadas mediante capturas.
 
 ## 10. Herramientas y tecnologías
 
 - **Cisco Packet Tracer:** diseño e implementación de la topología de red.
 - **IPv4 y CIDR:** planificación del direccionamiento.
 - **VLSM:** división de la red en subredes de distintos tamaños.
-- **Cisco IOS:** configuración de direcciones IP en interfaces físicas del router.
+- **Cisco IOS:** configuración de interfaces físicas del router.
 - **`ipconfig`:** comprobación de la configuración IP de los equipos finales.
-- **`ping`:** pruebas de conectividad entre equipos.
-
+- **`ping`:** verificación de conectividad entre equipos y subredes.
