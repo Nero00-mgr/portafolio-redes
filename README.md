@@ -22,11 +22,13 @@ Los siguientes proyectos se incorporarán a medida que sean desarrollados y vali
 
 | Proyecto | Estado |
 |---|---|
-| Direccionamiento IPv4 y subnetting | Completado |
-| VLAN y switching | Pendiente |
-| Routing entre VLAN y DHCP | Pendiente |
-| Routing dinámico con OSPF | Pendiente |
-| Troubleshooting de redes | Pendiente |
+| VLSM y conectividad IPv4 básica | Completado |
+| VLAN, trunking y router-on-a-stick | Proximo |
+| DHCP para múltiples subredes | Pendiente |
+| Port security y seguridad de switching | Pendiente |
+| ACL y control de comunicación | Pendiente |
+| OSPF y redes interconectadas | Pendiente |
+| Troubleshooting y fallas provocadas | Pendiente |
 
 ## Herramientas
 
