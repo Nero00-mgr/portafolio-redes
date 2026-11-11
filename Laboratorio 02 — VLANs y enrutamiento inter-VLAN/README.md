@@ -11,7 +11,7 @@ Una empresa está ampliando su infraestructura de red. Actualmente dispone de un
 La empresa necesita separar lógicamente los dispositivos de distintos departamentos para mejorar la organización de la red y facilitar la aplicación de políticas de seguridad en el futuro.
 
 | Área | Dispositivos | Vlan_ID |
-|---|---:|
+|---|---|---:|
 | Administración | 50 dispositivos | 10 |
 | Operaciones | 25 dispositivos | 20 |
 | Servidores | 10 dispositivos | 30 |
