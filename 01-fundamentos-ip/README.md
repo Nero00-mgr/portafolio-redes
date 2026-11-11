@@ -130,7 +130,7 @@ Las capturas de pantalla y el proyecto de Cisco Packet Tracer permiten consultar
 
 **Archivo del laboratorio:**
 
-- [Descargar laboratorio de Packet Tracer](LAB-01.pkt)
+- [Descargar laboratorio de Packet Tracer](evidencias/LAB-01.pkt)
 
 ## 8. Conclusiones
 
