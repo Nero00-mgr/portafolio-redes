@@ -22,7 +22,7 @@ Los siguientes proyectos se incorporarán a medida que sean desarrollados y vali
 
 | Proyecto | Estado |
 |---|---|
-| Direccionamiento IPv4 y subnetting | Pendiente |
+| Direccionamiento IPv4 y subnetting | Completado |
 | VLAN y switching | Pendiente |
 | Routing entre VLAN y DHCP | Pendiente |
 | Routing dinámico con OSPF | Pendiente |
