@@ -1,4 +1,4 @@
-# Laboratorio 01: Diseño de direccionamiento IPv4 mediante VLSM
+# Laboratorio 01: VLSM y conectividad IPv4 básica
 
 ## 1. Objetivo
 
@@ -61,8 +61,6 @@ Estas direcciones deberán configurarse en las interfaces correspondientes del r
 - Hosts utilizables: `64 - 2 = 62`.
 - Máscara: `255.255.255.192`.
 
-La subred `/27` solo permitiría 30 hosts utilizables, por lo que no satisface el requerimiento.
-
 ### Operaciones
 
 - Dispositivos requeridos: 25.
@@ -89,7 +87,7 @@ La subred `/27` solo permitiría 30 hosts utilizables, por lo que no satisface e
 - Los gateways propuestos pertenecen a los rangos de hosts utilizables.
 - La capacidad de cada subred cubre la cantidad de dispositivos requerida.
 
-El espacio desde `192.168.1.112` hasta `192.168.1.255` permanece sin asignar y puede reservarse para futuras ampliaciones, siempre que se planifique adecuadamente.
+El espacio desde `192.168.1.112` hasta `192.168.1.255` permanece sin asignar y puede reservarse para futuras ampliaciones.
 
 ### 7.1 Validación mediante simulación
 
