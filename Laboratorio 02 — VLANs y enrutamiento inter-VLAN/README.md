@@ -217,9 +217,9 @@ Mediante el comando `show ip route` se comprobó que el router dispone de las si
 
 | Código | Red de destino | Interfaz |
 |---|---|---|
-| C | `10.10.1.0/26` | `G0/0.10` |
-| C | `10.10.1.64/27` | `G0/0.20` |
-| C | `10.10.1.96/28` | `G0/0.30` |
+| Connected | `10.10.1.0/26` | `G0/0.10` |
+| Connected | `10.10.1.64/27` | `G0/0.20` |
+| Connected | `10.10.1.96/28` | `G0/0.30` |
 
 También se comprobaron las rutas locales correspondientes a las direcciones IPv4 de las subinterfaces.
 
