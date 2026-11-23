@@ -23,8 +23,8 @@ Los siguientes proyectos se incorporarán a medida que sean desarrollados y vali
 | Proyecto | Estado |
 |---|---|
 | VLSM y conectividad IPv4 básica | Completado |
-| VLAN, trunking y router-on-a-stick | Proximo |
-| DHCP para múltiples subredes | Pendiente |
+| VLAN, trunking y router-on-a-stick | Completado |
+| DHCP para múltiples subredes | Proximo |
 | Port security y seguridad de switching | Pendiente |
 | ACL y control de comunicación | Pendiente |
 | OSPF y redes interconectadas | Pendiente |
